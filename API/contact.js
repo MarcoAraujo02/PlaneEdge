@@ -20,7 +20,7 @@ export default async function handler(req, res) {
       secure: false,
       auth: {
         user: 'marcoaraujo0w@gmail.com',
-        pass: 'jhpw vaac rppb zytd', // Gera em myaccount.google.com/apppasswords
+        pass: 'jhpw vaac rppb zytd', // Sua App Password do Gmail aqui
       },
     });
 
