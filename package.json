@@ -1,8 +1,7 @@
 {
-  "name": "planeedge",
+  "name": "planedge",
   "version": "1.0.0",
   "description": "",
-  "main": "api/contact.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
