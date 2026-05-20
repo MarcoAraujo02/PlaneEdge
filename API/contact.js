@@ -1,11 +1,31 @@
 const nodemailer = require('nodemailer');
 
 module.exports = async function handler(req, res) {
+  console.log('METHOD:', req.method);
+  console.log('BODY:', JSON.stringify(req.body));
+  console.log('EMAIL_PASSWORD exists:', !!process.env.EMAIL_PASSWORD);
+
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { name, company, email, phone, service, message } = req.body;
+  let body = req.body;
+
+  if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body);
+    } catch(e) {
+      console.error('ERRO AO PARSEAR BODY:', e.message);
+      return res.status(400).json({ message: 'Invalid JSON' });
+    }
+  }
+
+  const { name, company, email, phone, service, message } = body || {};
+
+  if (!email || !name) {
+    console.error('CAMPOS OBRIGATORIOS FALTANDO - email:', email, 'name:', name);
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
 
   try {
     const transporter = nodemailer.createTransport({
@@ -17,6 +37,8 @@ module.exports = async function handler(req, res) {
         pass: process.env.EMAIL_PASSWORD,
       },
     });
+
+    console.log('TRANSPORTER CRIADO, enviando email...');
 
     await transporter.sendMail({
       from: '"PlanEdge Solutions" <marcoaraujo0w@gmail.com>',
@@ -33,6 +55,8 @@ module.exports = async function handler(req, res) {
       `,
     });
 
+    console.log('EMAIL PARA EMPRESA ENVIADO');
+
     await transporter.sendMail({
       from: '"PlanEdge Solutions" <marcoaraujo0w@gmail.com>',
       to: email,
@@ -47,9 +71,13 @@ module.exports = async function handler(req, res) {
       `,
     });
 
+    console.log('EMAIL DE CONFIRMACAO PARA CLIENTE ENVIADO');
+
     return res.status(200).json({ success: true });
+
   } catch (error) {
-    console.error('ERRO:', error.message);
+    console.error('ERRO NODEMAILER:', error.message);
+    console.error('STACK:', error.stack);
     return res.status(500).json({ errors: [{ message: error.message }] });
-  }   
+  }
 };
