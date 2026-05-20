@@ -5,22 +5,21 @@ export default async function handler(req, res) {
 
   const { name, company, email, phone, service, message } = req.body;
 
-  // Configura o Nodemailer com os dados do seu e-mail profissional
   const transporter = nodemailer.createTransport({
-    host: "smtp.hostinger.com", // Se for Hostinger (mude se for outro provedor)
+    host: "smtp.hostinger.com",
     port: 465,
-    secure: true, // true para a porta 465
+    secure: true,
     auth: {
-      user: 'marcoaraujo0w@gmail.com', // Seu e-mail profissional
-      pass: process.env.EMAIL_PASSWORD,       // Senha do seu e-mail (colocada nas variáveis da Vercel)
+      user: 'marcoaraujo0w@gmail.com',
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
 
   try {
-    // Envia o e-mail para você (o destinatário principal)
+    // Email para você
     await transporter.sendMail({
       from: '"Site PlanEdge" <marcoaraujo0w@gmail.com>',
-      to: 'marcoaraujo0w@gmail.com', // O e-mail onde você quer receber as mensagens
+      to: 'marcoaraujo0w@gmail.com',
       subject: `Novo Lead - ${service}`,
       html: `
         <p><strong>Nome:</strong> ${name}</p>
@@ -32,10 +31,10 @@ export default async function handler(req, res) {
       `,
     });
 
-    // Envia uma cópia ou confirmação para o cliente (o remetente do formulário)
+    // Email de confirmação para o cliente
     await transporter.sendMail({
-      from: '"PlanEdge Solutions" <marcoaraujo0w@gmail.com>', // Seu e-mail profissional
-      to: email, // O e-mail do cliente que preencheu o formulário
+      from: '"PlanEdge Solutions" <marcoaraujo0w@gmail.com>',
+      to: email,
       subject: 'Confirmação de Recebimento - PlanEdge Solutions',
       html: `
         <p>Olá ${name},</p>
@@ -50,7 +49,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ success: true });
   } catch (error) {
-    console.error("Erro ao enviar e-mail:", error); // Adicione um log para depuração
+    console.error("Erro ao enviar e-mail:", error);
     return res.status(500).json({ errors: [{ message: error.message }] });
   }
 }
