@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>PlanEdge Solutions</title>
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    :root{
+      --primary:#0b3d5c;
+      --secondary:#1f6fa5;
+      --light:#f4f7fb;
+      --dark:#102331;
+      --text:#5b6570;
+      --white:#ffffff;
+      --shadow:0 10px 30px rgba(0,0,0,0.08);
+      --gradient:linear-gradient(135deg,#0b3d5c,#1f6fa5);
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--light);
+      color:var(--dark);
+      overflow-x:hidden;
+    }
+
+    /* HEADER */
+
+    header{
+      position:fixed;
+      width:100%;
+      top:0;
+      z-index:1000;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(12px);
+      box-shadow:0 2px 20px rgba(0,0,0,0.05);
+    }
+
+    .navbar{
+      max-width:1200px;
+      margin:auto;
+      padding:18px 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      font-size:1.7rem;
+      font-weight:700;
+      color:var(--primary);
+      letter-spacing:1px;
+    }
+
+    .nav-links{
+      display:flex;
+      list-style:none;
+      gap:35px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:var(--dark);
+      font-weight:500;
+      transition:.3s;
+      position:relative;
+    }
+
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      width:0;
+      height:2px;
+      background:var(--secondary);
+      left:0;
+      bottom:-5px;
+      transition:.3s;
+    }
+
+    .nav-links a:hover::after{
+      width:100%;
+    }
+
+    .nav-links a:hover{
+      color:var(--secondary);
+    }
+
+    .menu-toggle{
+      display:none;
+      font-size:30px;
+      cursor:pointer;
+      color:var(--primary);
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      background:
+      linear-gradient(rgba(8,20,30,0.82),rgba(8,20,30,0.82)),
+      url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop') center/cover;
+      color:white;
+      padding:120px 20px 80px;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:rgba(255,255,255,0.04);
+      border-radius:50%;
+      top:-150px;
+      right:-100px;
+    }
+
+    .hero-content{
+      max-width:1200px;
+      margin:auto;
+      width:100%;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      gap:60px;
+      z-index:2;
+    }
+
+    .hero-text h1{
+      font-size:4rem;
+      line-height:1.1;
+      margin-bottom:25px;
+      font-weight:700;
+    }
+
+    .hero-text p{
+      color:#d8e5f0;
+      font-size:1.1rem;
+      margin-bottom:35px;
+      max-width:600px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 30px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      transition:.3s;
+      display:inline-block;
+    }
+
+    .btn-primary{
+      background:var(--secondary);
+      color:white;
+      box-shadow:0 10px 25px rgba(31,111,165,0.35);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-4px);
+      background:#2b82bd;
+    }
+
+    .btn-outline{
+      border:2px solid rgba(255,255,255,0.3);
+      color:white;
+    }
+
+    .btn-outline:hover{
+      background:white;
+      color:var(--primary);
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(10px);
+      padding:40px;
+      border-radius:25px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card h3{
+      margin-bottom:25px;
+      font-size:1.5rem;
+    }
+
+    .hero-item{
+      display:flex;
+      align-items:center;
+      gap:15px;
+      margin-bottom:20px;
+    }
+
+    .hero-item i{
+      width:50px;
+      height:50px;
+      background:rgba(255,255,255,0.1);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#7fd2ff;
+      font-size:20px;
+    }
+
+    /* SECTIONS */
+
+    section{
+      padding:100px 20px;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title span{
+      color:var(--secondary);
+      font-weight:600;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:.9rem;
+    }
+
+    .section-title h2{
+      font-size:2.8rem;
+      margin-top:10px;
+      color:var(--primary);
+    }
+
+    .section-title p{
+      color:var(--text);
+      margin-top:15px;
+    }
+
+    /* SERVICES */
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .service-card{
+      background:white;
+      padding:40px 30px;
+      border-radius:25px;
+      transition:.4s;
+      position:relative;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .service-card::before{
+      content:"";
+      position:absolute;
+      width:100%;
+      height:5px;
+      background:var(--gradient);
+      left:0;
+      top:0;
+    }
+
+    .service-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .service-icon{
+      width:70px;
+      height:70px;
+      background:rgba(31,111,165,0.1);
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:25px;
+    }
+
+    .service-icon i{
+      color:var(--secondary);
+      font-size:30px;
+    }
+
+    .service-card h3{
+      margin-bottom:15px;
+      color:var(--primary);
+      font-size:1.3rem;
+    }
+
+    .service-card p{
+      color:var(--text);
+      font-size:.95rem;
+      line-height:1.7;
+    }
+
+    /* ABOUT */
+
+    .about{
+      background:white;
+    }
+
+    .about-content{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .about-image img{
+      width:100%;
+      border-radius:25px;
+      box-shadow:var(--shadow);
+    }
+
+    .about-text h2{
+      font-size:2.5rem;
+      color:var(--primary);
+      margin-bottom:25px;
+    }
+
+    .about-text p{
+      color:var(--text);
+      margin-bottom:20px;
+      line-height:1.8;
+    }
+
+    .about-list{
+      margin-top:25px;
+    }
+
+    .about-list div{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:15px;
+      font-weight:500;
+    }
+
+    .about-list i{
+      color:var(--secondary);
+    }
+
+    /* CONTACT */
+
+    .contact{
+      background:#f4f7fb;
+      padding:120px 20px;
+    }
+
+    .contact-wrapper{
+      margin-top:70px;
+      display:grid;
+      grid-template-columns:1fr 1.2fr;
+      gap:50px;
+      align-items:start;
+    }
+
+    .contact-info{
+      background:linear-gradient(135deg,#0b3d5c,#184f77);
+      padding:45px;
+      border-radius:25px;
+      color:white;
+      box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .contact-info h3{
+      font-size:2rem;
+      margin-bottom:20px;
+    }
+
+    .contact-info p{
+      color:#d8e6f1;
+      line-height:1.8;
+      margin-bottom:35px;
+    }
+
+    .contact-item{
+      display:flex;
+      align-items:center;
+      gap:15px;
+      margin-bottom:22px;
+    }
+
+    .contact-icon{
+      width:50px;
+      height:50px;
+      border-radius:14px;
+      background:rgba(255,255,255,0.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#7fd2ff;
+      font-size:18px;
+    }
+
+    .contact-form-box{
+      background:white;
+      padding:45px;
+      border-radius:25px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .contact-form-modern{
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+    }
+
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .form-group{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .form-group label{
+      margin-bottom:8px;
+      font-weight:600;
+      color:#0b3d5c;
+      font-size:.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
+      padding:15px;
+      border-radius:12px;
+      border:1px solid #dbe5ee;
+      outline:none;
+      font-size:.95rem;
+      transition:.3s;
+      background:#f9fbfd;
+    }
+
+    .form-group textarea{
+      resize:none;
+      min-height:140px;
+    }
+
+    .contact-btn{
+      background:var(--gradient);
+      color:white;
+      border:none;
+      padding:16px;
+      border-radius:14px;
+      font-size:1rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .contact-btn:hover{
+      transform:translateY(-3px);
+    }
+
+    .form-success{
+      display:none;
+      margin-bottom:20px;
+      padding:15px;
+      border-radius:12px;
+      background:#e8f7ee;
+      color:#1f7a46;
+      font-weight:600;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#08141e;
+      color:#b4c1ce;
+      text-align:center;
+      padding:30px;
+      font-size:.95rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:992px){
+
+      .hero-content,
+      .about-content,
+      .contact-wrapper{
+        grid-template-columns:1fr;
+      }
+
+      .hero-text{
+        text-align:center;
+      }
+
+      .hero-buttons{
+        justify-content:center;
+      }
+
+      .hero-text h1{
+        font-size:3rem;
+      }
+
+      .hero-card{
+        max-width:600px;
+        margin:auto;
+      }
+    }
+
+    @media(max-width:768px){
+
+      .menu-toggle{
+        display:block;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:80px;
+        right:0;
+        width:100%;
+        background:white;
+        flex-direction:column;
+        align-items:center;
+        padding:30px 0;
+        display:none;
+        box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      }
+
+      .nav-links.active{
+        display:flex;
+      }
+
+      .hero-text h1{
+        font-size:2.3rem;
+      }
+
+      .section-title h2{
+        font-size:2rem;
+      }
+
+      .form-row{
+        grid-template-columns:1fr;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+
+    <nav class="navbar">
+
+      <div class="logo">
+        PlanEdge Solutions
+      </div>
+
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="hero-text">
+
+        <h1>
+          Smart Engineering<br>
+          Project Solutions
+        </h1>
+
+        <p>
+          Specialized consulting in Planning,
+          Scheduling, Cost Control and Project
+          Management for engineering companies
+          seeking efficiency, control and results.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#services" class="btn btn-primary">
+            Our Services
+          </a>
+
+          <a href="#contact" class="btn btn-outline">
+            Contact Us
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="hero-card">
+
+        <h3>Core Services</h3>
+
+        <div class="hero-item">
+          <i class="fa-solid fa-chart-line"></i>
+          <div>
+            <strong>Planning</strong>
+            <p>Strategic project planning solutions</p>
+          </div>
+        </div>
+
+        <div class="hero-item">
+          <i class="fa-solid fa-calendar-days"></i>
+          <div>
+            <strong>Scheduling</strong>
+            <p>Advanced schedule development</p>
+          </div>
+        </div>
+
+        <div class="hero-item">
+          <i class="fa-solid fa-coins"></i>
+          <div>
+            <strong>Cost Control</strong>
+            <p>Budget and financial performance control</p>
+          </div>
+        </div>
+
+        <div class="hero-item">
+          <i class="fa-solid fa-diagram-project"></i>
+          <div>
+            <strong>Project Management</strong>
+            <p>Complete engineering project management</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+
+    <div class="container">
+
+      <div class="section-title">
+        <span>Services</span>
+        <h2>What We Do</h2>
+
+        <p>
+          Modern engineering consulting solutions
+          designed for performance and efficiency.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+
+          <h3>Planning</h3>
+
+          <p>
+            Complete project planning structure focused
+            on organization, productivity and operational efficiency.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+
+          <h3>Scheduling</h3>
+
+          <p>
+            Development and monitoring of schedules
+            to ensure deadline control and performance.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-sack-dollar"></i>
+          </div>
+
+          <h3>Cost Control</h3>
+
+          <p>
+            Detailed budget and cost management
+            to optimize resources and reduce waste.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+
+          <h3>Project Management</h3>
+
+          <p>
+            Full engineering project management
+            from planning to execution and delivery.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+
+    <div class="container">
+
+      <div class="about-content">
+
+        <div class="about-image">
+
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2071&auto=format&fit=crop">
+
+        </div>
+
+        <div class="about-text">
+
+          <h2>
+            Smart solutions for engineering companies
+          </h2>
+
+          <p>
+            PlanEdge Solutions provides strategic support
+            for companies looking to improve project
+            management performance and operational control.
+          </p>
+
+          <p>
+            Our mission is to deliver efficiency,
+            visibility and data-driven decision making
+            for engineering and industrial projects.
+          </p>
+
+          <div class="about-list">
+
+            <div>
+              <i class="fa-solid fa-check"></i>
+              Strategic Planning
+            </div>
+
+            <div>
+              <i class="fa-solid fa-check"></i>
+              Cost Management
+            </div>
+
+            <div>
+              <i class="fa-solid fa-check"></i>
+              Schedule Control
+            </div>
+
+            <div>
+              <i class="fa-solid fa-check"></i>
+              Project Leadership
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+
+    <div class="container">
+
+      <div class="section-title">
+        <span>CONTACT</span>
+        <h2>Let’s Talk About Your Project</h2>
+
+        <p>
+          Start with a conversation. We’ll understand your
+          project needs and identify how PlanEdge Solutions
+          can support your operation.
+        </p>
+      </div>
+
+      <div class="contact-wrapper">
+
+        <!-- LEFT -->
+        <div class="contact-info">
+
+          <h3>Start with a Free Consultation</h3>
+
+          <p>
+            Tell us about your project, scheduling challenges,
+            cost control requirements or management needs.
+          </p>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <span>marcoaraujo0w@gmail.com</span>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+
+            <span>+55 (11) 90000-0000</span>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+
+            <span>São Paulo, Brazil — Global Support</span>
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="contact-form-box">
+
+          <div id="form-success" class="form-success">
+            ✓ Message sent successfully.
+          </div>
+
+          <!-- FORMULÁRIO ENVIANDO PARA O SEU BACKEND -->
+          <form id="contactForm" class="contact-form-modern">
+
+            <div class="form-row">
+
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Your full name" required>
+              </div>
+
+              <div class="form-group">
+                <label>Company</label>
+                <input type="text" name="company" placeholder="Company name">
+              </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="your@email.com" required>
+              </div>
+
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" name="phone" placeholder="+55 (11)...">
+              </div>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Service</label>
+
+              <select name="service" required>
+                <option value="">Select a service</option>
+                <option value="Planning">Planning</option>
+                <option value="Scheduling">Scheduling</option>
+                <option value="Cost Control">Cost Control</option>
+                <option value="Project Management">Project Management</option>
+              </select>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Message</label>
+
+              <textarea name="message" placeholder="Tell us about your project or requirements..." required></textarea>
+
+            </div>
+
+            <button type="submit" id="submitBtn" class="contact-btn">
+              Send Message
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 PlanEdge Solutions • All Rights Reserved
+  </footer>
+
+  <!-- JS -->
+  <script>
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // INTEGRAÇÃO VIA FETCH COM AS SERVERLESS FUNCTIONS DA VERCEL
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMessage = document.getElementById('form-success');
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault(); 
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Sending...";
+
+      // Converte os dados coletados do formulário em um Objeto literal
+      const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData.entries());
+
+      // Faz a chamada assíncrona para a rota serverless /api/contact do seu próprio projeto
+      fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(data), // Converte o Objeto em string JSON pura para o Node ler
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Exibe a mensagem de sucesso na tela sem dar refresh
+          successMessage.style.display = 'block';
+          successMessage.style.background = '#e8f7ee';
+          successMessage.style.color = '#1f7a46';
+          successMessage.innerText = "✓ Message sent successfully.";
+          contactForm.reset();
+        } else {
+          // Captura possíveis mensagens de erro enviadas pelo Node
+          return response.json().then(errData => {
+            if (errData.errors) {
+              throw new Error(errData.errors.map(error => error.message).join(", "));
+            } else if (errData.message) {
+              throw new Error(errData.message);
+            } else {
+              throw new Error("Oops! There was a problem submitting your form");
+            }
+          });
+        }
+      })
+      .catch(error => {
+        // Exibe erro estruturado em caso de falha de rede ou no servidor
+        successMessage.style.display = 'block';
+        successMessage.style.background = '#fdeded';
+        successMessage.style.color = '#e23636';
+        successMessage.innerText = "❌ Error: " + error.message;
+      })
+      .finally(() => {
+        // Restaura o botão para cliques normais
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Send Message";
+      });
+    });
+
+  </script>
+
+</body>
+</html>
